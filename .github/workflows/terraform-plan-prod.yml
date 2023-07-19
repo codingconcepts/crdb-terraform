@@ -5,14 +5,21 @@ on:
     branches:
       - main
 
-defaults:
-  run:
-    working-directory: ./
-
 jobs:
-  tf_fmt:
+  checkout:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./tf
+    steps:
+      - uses: actions/checkout@v1
+
+  terraform:
     name: Setup Terraform
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./tf
     steps:
       - uses: hashicorp/setup-terraform@v2
         with:
