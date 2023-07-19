@@ -1,0 +1,15 @@
+name: Deploy Production
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  tf_fmt:
+    name: Setup Terraform
+    runs-on: ubuntu-latest
+    steps:
+      - uses: hashicorp/setup-terraform@v2
+        with:
+          cli_config_credentials_token: ${{ secrets.TF_API_TOKEN }}
